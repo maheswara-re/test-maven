@@ -1,0 +1,32 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('scm') {
+            steps {
+                git 'https://github.com/jilu407/test-maven.git'
+            }
+        }
+        stage('install') {
+            steps {
+               sh 'mvn install'
+            }
+        }
+        stage('test') {
+            steps {
+               sh 'mvn test'
+            }
+            
+        }
+        stage('package') {
+            steps {
+               sh 'mvn package'
+            }
+        }
+        stage('deploy') {
+            steps {
+               ansiblePlaybook become: true, credentialsId: 'jekeni-ec2-private-key', disableHostKeyChecking: true, inventory: 'dev.inv', playbook: 'play.yml', vaultTmpPath: ''
+            }
+        }
+    }
+}
