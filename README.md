@@ -1,5 +1,5 @@
 # maven-project
 
-Simple Maven Project
-Demo for Batch04
-Learning Git - 2 - Jenkins - Autotriggr
+demo batch
+this is mahesh
+Learning git to jenkins auto triggering
